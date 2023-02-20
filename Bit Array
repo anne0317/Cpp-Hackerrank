@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    unsigned long N, S, P, Q;
+    cin >> N >> S >> P >> Q;  
+    
+    unsigned long mask = ~(1 << 31);
+    
+    unsigned long tort = S & mask;
+    unsigned long hare = S & mask;
+    unsigned long n = 0;
+    
+    while ( n < N ) {
+        tort = (tort*P + Q) & mask;
+        hare = (hare*P + Q) & mask;
+        hare = (hare*P + Q) & mask;
+        n++;
+        if ( tort == hare ) {
+            n++;
+            break;
+        }
+    }
+    
+    cout << n << endl;
+}
